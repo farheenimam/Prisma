@@ -34,13 +34,13 @@ Prisma is a project designed to provide a platform for readers and authors using
 
 ## Prerequisites
 - **Software**:
-  - ![JDK Logo](https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg) Java Development Kit (JDK) 8 or later
-  - ![IntelliJ IDEA Logo](https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA_icon.svg) IntelliJ IDEA
-  - ![Maven Logo](https://upload.wikimedia.org/wikipedia/commons/5/52/Apache_Maven_logo.svg) Apache Maven
-  - ![Spring Boot Logo](https://spring.io/images/icon-spring-boot-3c495fb458d14df1db08fa9d8528d1a7.svg) Spring Boot
-  - ![MySQL Logo](https://www.mysql.com/common/logos/logo-mysql-170x115.png) MySQL
-  - ![Tomcat Logo](https://upload.wikimedia.org/wikipedia/commons/7/7b/Tomcat-logo.svg) Apache Tomcat
-  - ![Thymeleaf Logo](https://www.thymeleaf.org/doc/images/logo-thymeleaf.png) Thymeleaf
+  - <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="JDK Logo" height="30px"> Java Development Kit (JDK) 8 or later
+  - <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA_icon.svg" alt="IntelliJ IDEA Logo" height="30px"> IntelliJ IDEA (I used IntelliJ IDEA for this project)
+  - <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Apache_Maven_logo.svg" alt="Maven Logo" height="30px"> Apache Maven
+  - <img src="https://spring.io/images/icon-spring-boot-3c495fb458d14df1db08fa9d8528d1a7.svg" alt="Spring Boot Logo" height="30px"> Spring Boot
+  - <img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL Logo" height="30px"> MySQL
+  - <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Tomcat-logo.svg" alt="Tomcat Logo" height="30px"> Apache Tomcat
+  - <img src="https://www.thymeleaf.org/doc/images/logo-thymeleaf.png" alt="Thymeleaf Logo" height="30px"> Thymeleaf
   - A text editor or Integrated Development Environment (IDE)
 
 ## Installation
