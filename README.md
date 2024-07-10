@@ -132,4 +132,4 @@ This project is licensed under the MIT License.
 * Thanks to all the contributors and third-party libraries used in this project.
 
 ## Contact
-For any inquiries or issues, please contact [your email].
+For any inquiries or issues, please contact [farheenimam.offically@gmail.com].
