@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Subscriptions</title>
+    <style>
+        h1, h2, p, table, th, td {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: black;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #000, #6a0dad);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: transparent;
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #6a0dad;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: transparent;
+        }
+
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+
+        .navbar-brand {
+            display: block;
+            background-color: #6a0dad;
+            color: white;
+            padding: 10px 0;
+            font-size: 24px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-container input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #6a0dad;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #8b3f9f;
+        }
+    </style>
+</head>
+<body>
+<a class="navbar-brand" href="#">Author Dashboard</a>
+<div class="container">
+    <h1>List of Subscriptions</h1>
+    <div class="form-container">
+        <form action="/fetchSubscriptions" method="post">
+            <label for="authorName">Enter your name for security purpose:</label>
+            <input type="text" id="authorName" name="author" required>
+            <input type="submit" value="Fetch Subscriptions">
+        </form>
+    </div>
+    <hr><br>
+    <table>
+        <thead>
+        <tr>
+            <th>Subscriber Email</th>
+            <th>Subscription Plan</th>
+            <th>Amount</th>
+            <th>Timestamp</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over subscriptions fetched from backend -->
+        <tr th:each="reader : ${readers}">
+            <td th:text="${reader.email}"></td>
+            <td th:text="${reader.subscription}"></td>
+            <td th:text="${reader.amount}"></td>
+            <td th:text="${reader.timestamp}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

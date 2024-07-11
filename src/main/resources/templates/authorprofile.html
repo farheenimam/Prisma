@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000, #6a0dad);
+            color: white;
+            padding: 20px;
+            height: 150vh;
+        }
+
+        .profile-container {
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #6a0dad;
+            margin-right: 20px;
+            background-image: url(/static/download.png);
+            background-size: cover;
+        }
+
+        .search-result {
+            font-size: 20px;
+        }
+
+        .search-result h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .info-box {
+            margin-top: 40px;
+            text-align: center;
+            background-color: rgba(106, 13, 173, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+            color: white;
+        }
+
+        .info-box:hover {
+            background-color: rgba(106, 13, 173, 0.7);
+        }
+
+        .info-box h3 {
+            margin: 0;
+            font-size: 20px;
+            color: white;
+        }
+
+        .info-box i {
+            font-size: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: 16px;
+            color: white;
+        }
+
+        .link {
+            color: white;
+            text-decoration: none;
+        }
+
+        .head {
+            font-size: 30px;
+            text-align: center;
+            margin-left: 350px;
+        }
+
+        .navbar-brand {
+            display: block;
+            background-color: #6a0dad;
+            color: white;
+            padding: 10px 0;
+            font-size: 24px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 300px;
+            height: 40px;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        a {
+         color: white;
+        }
+        .btn-search {
+            font-size: 18px;
+            background-color: transparent;
+            color: white;
+            border: none;
+        }
+
+        .btn-search:hover {
+            color: #ff00ff;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script th:inline="javascript">
+        /* JavaScript for handling form submission and updating search result */
+        $(document).ready(function () {
+            $('.search-bar').submit(function (event) {
+                event.preventDefault(); // Prevent default form submission
+                var formData = $(this).serialize(); // Serialize form data
+
+                $.get('/searchAuthor', formData, function (response) {
+                    $('.search-result').html(response); // Update search result section
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="navbar-brand">User Profile</div>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-photo"></div>
+    </div>
+    <div class="search-result">
+        <div th:if="${author != null}" class="search-result">
+            <div class="author-info">
+                <p><strong></strong> <span th:text="${author.name}"></span></p>
+                <p><strong></strong> <span th:text="${author.email}"></span></p>
+                <p><strong></strong> <span th:text="${author.role}"></span></p>
+            </div>
+        </div>
+</div>
+    <div class="search-bar">
+        <form class="search-bar">
+            <input class="form-control me-1" type="search" name="name" placeholder="Search author name" aria-label="Search">
+            <button class="btn btn-outline-dark btn-search" type="submit">
+                <i class="fas fa-search"></i>
+                Search
+            </button>
+        </form>
+    </div>
+        <div class="info-box">
+            <a href="subscription" th:href="@{/subscription}">
+            <i class="fas fa-info-circle"></i>
+            <h3>Subscription</h3>
+            <p>Check the details here</p>
+        </div>
+    </a>
+</div>
+</body>
+</html>

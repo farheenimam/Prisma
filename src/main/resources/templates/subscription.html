@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscription Page</title>
+
+
+    <style>
+        body {
+           margin: 0;
+           font-family: Arial, sans-serif;
+           background: linear-gradient(135deg, #000, #6a0dad);
+           color: white;
+       }
+
+       .navbar {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           background-color: #6a0dad;
+           padding: 10px 20px;
+       }
+
+       .navbar-brand, .nav-link {
+           color: white;
+           text-decoration: none;
+           font-size: 20px;
+           font-weight: bold;
+       }
+
+       .navbar-brand:hover, .nav-link:hover {
+           color: #ff00ff;
+       }
+
+       .subscription-container {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           margin-top: 50px;
+           width: 80%;
+           max-width: 800px;
+           margin: 50px auto;
+           background-color: rgba(0, 0, 0, 0.5);
+           padding: 20px;
+           border-radius: 10px;
+       }
+
+       .subscription-table {
+           width: 100%;
+           border-collapse: collapse;
+           margin-bottom: 30px;
+       }
+
+       .subscription-table th, .subscription-table td {
+           border: 1px solid #ddd;
+           padding: 15px;
+           text-align: left;
+       }
+
+       .subscription-table th {
+           background-color: #6a0dad;
+           text-transform: uppercase;
+       }
+
+       .subscription-table tr:nth-child(even) {
+           background-color: rgba(106, 13, 173, 0.2);
+       }
+
+       .subscription-dropdown, .payment-form {
+           width: 100%;
+           margin-bottom: 20px;
+       }
+
+       .subscription-dropdown label, .payment-form label {
+           font-size: 20px;
+           margin-bottom: 10px;
+           display: block;
+       }
+
+       .subscription-dropdown select, .form-input {
+           width: 100%;
+           padding: 10px;
+           font-size: 18px;
+           margin-bottom: 20px;
+           border: none;
+           border-radius: 5px;
+       }
+
+       .form-submit, .add-subscription-btn {
+           background-color: #6a0dad;
+           color: white;
+           padding: 10px 20px;
+           border: none;
+           border-radius: 5px;
+           font-size: 18px;
+           cursor: pointer;
+       }
+
+       .form-submit:hover, .add-subscription-btn:hover {
+           background-color: #ff00ff;
+       }
+
+       .payment-form input[type="radio"] {
+           margin-right: 10px;
+       }
+
+       .credit-card-form, .paypal-options {
+           display: none;
+       }
+
+       .credit-card-option:checked ~ .credit-card-form {
+           display: block;
+       }
+
+       .paypal-option:checked ~ .paypal-options {
+           display: block;
+       }
+
+       .credit-card-form label, .credit-card-form input[type="text"],
+       .credit-card-form input[type="number"], .credit-card-form input[type="submit"],
+       .paypal-options label, .paypal-options select, .paypal-options button {
+           width: 100%;
+       }
+
+       .credit-card-form input[type="text"],
+       .credit-card-form input[type="number"], .paypal-options select {
+           padding: 10px;
+           margin-bottom: 10px;
+           border: none;
+           border-radius: 5px;
+           font-size: 16px;
+       }
+
+       .credit-card-form input[type="submit"], .paypal-options button {
+           background-color: #6a0dad;
+           color: white;
+           padding: 10px 20px;
+           border: none;
+           border-radius: 5px;
+           font-size: 16px;
+           cursor: pointer;
+           margin-top: 10px;
+       }
+
+       .credit-card-form input[type="submit"]:hover, .paypal-options button:hover {
+           background-color: #ff00ff;
+       }
+
+       .section-title {
+           font-size: 24px;
+           margin-bottom: 20px;
+           text-align: center;
+       }
+
+       .navbar-brand {
+           display: block;
+           background-color: #6a0dad;
+           color: white;
+           padding: 10px 0;
+           font-size: 24px;
+           text-decoration: none;
+           margin-bottom: 10px;
+           text-align: center;
+       }
+
+       .section-title {
+           font-size: 30px;
+       }
+
+       .payment-options {
+           position: relative;
+       }
+
+       .credit-card-option:checked ~ .credit-card-form,
+       .paypal-option:checked ~ .paypal-options {
+           display: block;
+       }
+
+       .purchased-subscriptions {
+           width: 80%;
+           max-width: 800px;
+           margin: 20px auto;
+           background-color: rgba(0, 0, 0, 0.5);
+           padding: 20px;
+           border-radius: 10px;
+       }
+
+       .purchased-subscriptions h2 {
+           text-align: center;
+           margin-bottom: 20px;
+       }
+
+       .purchased-subscriptions ul {
+           list-style-type: none;
+           padding: 0;
+       }
+
+       .purchased-subscriptions ul li {
+           background-color: #6a0dad;
+           padding: 10px;
+           margin: 5px 0;
+           border-radius: 5px;
+           text-align: center;
+       }
+
+       .add-subscription-btn {
+           display: block;
+           margin: 20px auto;
+       }
+
+       .subscription-form-container {
+           margin-bottom: 30px;
+       }
+
+       .new-subscription-form {
+           display: none;
+           margin-top: 20px;
+           width: 80%;
+           max-width: 800px;
+           background-color: rgba(0, 0, 0, 0.5);
+           padding: 20px;
+           border-radius: 10px;
+       }
+
+       #show-form:checked ~ .new-subscription-form {
+           display: block;
+       }
+
+       .center-button {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       }
+
+       .form-input {
+           width: calc(100% - 20px);
+           padding: 10px;
+           font-size: 18px;
+           margin-bottom: 20px;
+           border: none;
+           border-radius: 5px;
+
+       }
+
+       .subscription-dropdown {
+           display: flex;
+           flex-direction: column;
+           align-items: flex-start;
+       }
+    </style>
+</head>
+<body>
+<a class="navbar-brand" href="#">Reader Dashboard</a>
+
+<div class="section-title">List of Subscriptions<hr><br></div>
+
+<div class="subscription-container">
+    <div class="subscription-form-container">
+        <table class="subscription-table">
+            <thead>
+            <tr>
+                <th>Subscription</th>
+                <th>Price</th>
+                <th>Duration</th>
+                <th>Features</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Basic</td>
+                <td>$9.99</td>
+                <td>1 month</td>
+                <td>Access to basic features</td>
+            </tr>
+            <tr>
+                <td>Standard</td>
+                <td>$19.99</td>
+                <td>3 months</td>
+                <td>Access to standard features</td>
+            </tr>
+            <tr>
+                <td>Premium</td>
+                <td>$29.99</td>
+                <td>6 months</td>
+                <td>Access to premium features</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <form id="userForm" onsubmit="submitForm(event)">
+            <div class="subscription-dropdown">
+                <label for="author">Author's Name:</label>
+                <input type="text" id="author" name="author" required class="form-input">
+            </div>
+            <div class="subscription-dropdown">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required class="form-input">
+            </div>
+            <div class="subscription-dropdown">
+                <label for="subscription">Choose your subscription:</label>
+                <select id="subscription" name="subscription" class="form-input">
+                    <option value="basic|9.99">Basic - $9.99/month</option>
+                    <option value="standard|19.99">Standard - $19.99/3 months</option>
+                    <option value="premium|29.99">Premium - $29.99/6 months</option>
+                </select>
+            </div>
+            <div class="subscription-dropdown">
+                <label for="book">Choose your book:</label>
+                <input type="text" id="book" name="book" placeholder="Enter the book name" class="form-input">
+            </div>
+            <div class="subscription-dropdown">
+                <label for="paymentMethod">Choose your Payment Method:</label>
+                <select id="paymentMethod" name="paymentMethod" class="form-input">
+                    <option value="Paypal balance">PayPal Balance</option>
+                    <option value="Bank Account">Bank Account</option>
+                    <option value="PayPal Credit">PayPal Credit</option>
+                    <option value="Debit Credit Card">Debit or Credit Card</option>
+                    <option value="Rewards Balance">Rewards Balance</option>
+                </select>
+            </div>
+            <div class="center-button">
+                <button type="submit" class="form-submit">Subscribe</button>
+    </div>
+
+        </form>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function submitForm(event) {
+     event.preventDefault();  // Prevent default form submission
+
+     var formData = new FormData($('#userForm')[0]);
+
+     $.ajax({
+         type: "POST",
+         url: "/subscription",
+         data: formData,
+         processData: false,
+         contentType: false,
+         success: function (data) {
+             console.log("Subscription bought successfully");
+             // Redirect to the subscription page
+             window.location.href = "/subscription?message=success";
+         },
+         error: function (jqXHR, textStatus, errorThrown) {
+             console.log("Purchase failed: " + textStatus + ", " + errorThrown);
+             // Show error message
+             alert("Purchase submission failed. Please check the input fields and try again.");
+         }
+     });
+ }
+
+</script>
+</html>

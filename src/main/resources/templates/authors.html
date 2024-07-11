@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors Table</title>
+    <style>
+        .navbar-brand {
+            display: block;
+            background-color: #6a0dad;
+            color: white;
+            padding: 10px 0;
+            font-size: 24px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000, #6a0dad);
+            color: white;
+            height: 91.5vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .table {
+            width: 80%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background-color: transparent;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: transparent;
+        }
+
+        .section-title {
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<a class="navbar-brand" href="#">Reader Dashboard</a>
+
+<div class="container">
+    <div class="section-title">List of Authors<hr><br></div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Author Name</th>
+            <th>Email</th>
+            <th>Books</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="author : ${authors}">
+            <td th:text="${author.name}"></td>
+            <td th:text="${author.email}"></td>
+            <td th:text="${author.book}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script> function submitForm() {
+    var formData = new FormData($('#userForm')[0]);
+
+    $.ajax({
+        type: "POST",
+        url: "/register",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            console.log("Form submitted successfully");
+            // Redirect to login page
+            window.location.href = "login.html";
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Form submission failed: " + textStatus + ", " + errorThrown);
+            // Show error message
+            alert("Form submission failed. Please check the input fields and try again.");
+        }
+    });
+}
+    </script>
+    <meta charset="UTF-8">
+    <title>Prisma</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000, #6a0dad);
+            background-attachment: fixed;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: #000;
+            width: 100%;
+            font-size:20px;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff;
+            font-size:20px;
+        }
+        .content {
+            flex: 1;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold; /* You can add other styles as needed */
+        }
+
+        .form-container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .form-label {
+            color: #b5b5b5;
+        }
+        .btn-primary {
+            background-color: #6a0dad;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #5a0ba5;
+        }
+        .input-group-text {
+            background-color: #6a0dad;
+            border: none;
+            color: #fff;
+        }
+        .parallax {
+            background: linear-gradient(135deg, #000, #6a0dad);
+            background-attachment: fixed;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .parallax h1 {
+            font-size: 50px;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), 4px 4px 10px rgba(106, 13, 173, 0.7);
+            animation: glow 1s ease-in-out infinite alternate;
+            margin-bottom:0px
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #6a0dad, 0 0 20px #6a0dad, 0 0 30px #6a0dad, 0 0 40px #6a0dad, 0 0 50px #6a0dad, 0 0 60px #6a0dad, 0 0 70px #6a0dad;
+            }
+            to {
+                text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff, 0 0 80px #ff00ff;
+            }
+            a{
+            color:black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Prisma </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/" th:href="@{/}" >Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="login" th:href="@{/login}">Login</a>
+                </li>
+            </ul>
+</nav>
+<hr>
+<div class="parallax">
+    <h1>Prisma Signup form</h1>
+</div>
+
+<div class="content">
+    <div class="form-container">
+        <form class="row g-3" id="userForm" th:action="@{/register}" th:object="${registerForm}" method="post">
+            <div class="col-md-12">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="col-md-12">
+                <label for="email" class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                    <input type="text" class="form-control" id="email" name="email" aria-describedby="inputGroupPrepend2" required>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <select class="form-select" id="role" name="role" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option value="Author">Author</option>
+                        <option value="Reader">Reader</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                    <label class="form-check-label" for="invalidCheck2">
+                        Agree to terms and conditions
+                    </label>
+                </div>
+            </div>
+            <div class="col-12">
+                <div><p th:if=${error} th:text="${error}" class="error-message"></p></div>
+                <button class="btn btn-primary" type="submit" onclick="submitForm()">Submit Form</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>

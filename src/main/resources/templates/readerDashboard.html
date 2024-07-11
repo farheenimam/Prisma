@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+
+               body {
+                   margin: 0;
+                   font-family: Arial, sans-serif;
+                   color: white;
+                   background: linear-gradient(135deg, #000, #6a0dad);
+               }
+
+               .navbar {
+                   display: flex;
+                   justify-content: space-between;
+                   align-items: center;
+                   background-color: #6a0dad;
+                   padding: 10px 20px;
+               }
+
+               .navbar-brand, .nav-link {
+                   color: white;
+                   text-decoration: none;
+                   font-size: 20px;
+                   font-weight: bold;
+               }
+
+               .navbar-brand:hover, .nav-link:hover {
+                   color: #ff00ff;
+               }
+
+               .main-header {
+                   margin: 20px 0 0 0;
+                   border: 2px solid white;
+                   display: flex;
+                   justify-content: space-between;
+                   align-items: center;
+                   padding: 20px;
+               }
+
+               .button1 {
+                   font-size: 20px;
+                   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                   color: white;
+                   text-align: left;
+               }
+
+               .button1 a {
+                   color: white;
+                   text-decoration: none;
+               }
+
+               .button1 a:hover {
+                   color: #ff00ff;
+               }
+
+               .container1 {
+                   width: 75%;
+                   margin: 0 0 0 40px;
+                   display: flex;
+                   flex-direction: column;
+                   justify-content: center;
+                   align-items: center;
+               }
+
+               .search-bar {
+                   display: flex;
+                   align-items: center;
+                   margin-bottom: 20px;
+                   width: 300px;
+                   height: 40px;
+                   background-color: transparent;
+               }
+
+               .form-control {
+                   width: 100%;
+                   margin-right: 10px;
+                   font-size: 18px;
+               }
+
+               .btn-search {
+                   font-size: 18px;
+                   background-color: transparent;
+                   color: white;
+                   border: none;
+               }
+
+               h1 {
+                   font-size: 90px;
+                   margin-bottom: 20px;
+                   text-align: center;
+                   color: white;
+               }
+
+               .glow {
+                   text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff, 0 0 80px #ff00ff;
+                   animation: glow 1s ease-in-out infinite alternate;
+               }
+
+               @keyframes glow {
+                   from {
+                       text-shadow: 0 0 10px #303030, 0 0 20px #ff00ff, 0 0 30px #303030, 0 0 40px #303030, 0 0 50px #303030, 0 0 60px #303030, 0 0 70px #303030;
+                   }
+                   to {
+                       text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff, 0 0 80px #ff00ff;
+                   }
+               }
+
+               .parallax {
+                   background-image: url('/static/bg1.png');
+                   background-attachment: fixed;
+                   background-size: cover;
+                   height: 100vh;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;
+                   color: white;
+               }
+
+               h2 {
+                   font-size: 50px;
+               }
+
+               .search-result {
+                   margin-top: 20px;
+                   color: white;
+               }
+
+               .search-result .author-info {
+                   font-size: 20px;
+                   background-color: #6a0dad;
+                   padding: 0.1px;
+                   border-radius: 5px;
+                   margin-right: 330px;
+               }
+    </style>
+
+</head>
+<body>
+<nav class="navbar">
+    <a class="navbar-brand" href="/" th:href="@{/}">Home</a>
+    <a class="navbar-brand" href="register" th:href="@{/register}">Register</a>
+    <a class="navbar-brand" href="login" th:href="@{/login}">Sign Up</a>
+</nav>
+
+<div class="parallax">
+    <h1 class="glow">Reader Dashboard</h1>
+</div>
+
+<div class="main-header">
+    <div class="button1">
+        <a href="subscriptionList"  th:href="@{/subscriptionList}">
+            <i class="fas fa-book"></i>
+            List Of Subscription
+        </a>
+        <br><br><br>
+        <hr><br>
+        <a href="authors"  th:href="@{/authors}">
+            <i class="fas fa-users"></i>
+            List of Authors
+        </a>
+        <br><br>
+        <hr>
+        <br>
+        <a href="userProfile.html"  th:href="@{/userProfile}">
+            <i class="fas fa-users"></i>
+            User Profile
+        </a>
+        <br><br>
+        <hr>
+
+    </div>
+    <div class="container1">
+        <a href="authorprofile.html" th:href="@{/authorprofile}"><h2 style="color:white;">
+            <i class="fas fa-search"></i>
+            Find User
+        </h2></a>
+    </div>
+</div>
+</body>
+</html>

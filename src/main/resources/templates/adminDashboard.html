@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #000, #6a0dad);
+        }
+
+        .navbar-brand {
+            display: block;
+            background-color: #6a0dad;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+            margin-top:0px;
+        }
+ .sidebar {
+            position: fixed;
+            left: 0;
+            top: -5px;
+            bottom: 0;
+            width: 200px;
+            background-color: #4a148c;
+            padding-top: 60px;
+        }
+
+        .sidebar-link {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-link:hover {
+            background-color: #6a0dad;
+        }
+
+
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #6a0dad;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #4a148c;
+        }
+
+        tr:hover {
+            background-color: #6a0dad;
+        }
+
+        .logout-link {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #6a0dad;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .logout-link:hover {
+            background-color: #4a148c;
+        }
+
+        button {
+            background-color: #6a0dad;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #4a148c;
+        }
+    </style>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+<a class="navbar-brand" href="#">Admin Dashboard</a>
+<!--<a class="navbar-brand" href="/" th:href="@{/}">Home</a>-->
+<!--<a class="navbar-brand" href="register" th:href="@{/register}">Register</a>-->
+<!--<a class="navbar-brand" href="login" th:href="@{/login}">Sign Up</a>-->
+<div class="sidebar">
+    <a class="sidebar-link" th:href="@{/manageauthors}">
+        <i class="fas fa-users"></i> Manage Authors
+    </a>
+    <a class="sidebar-link" th:href="@{/managereaders}">
+        <i class="fas fa-book-reader"></i> Manage Readers
+    </a>
+    <a class="sidebar-link" th:href="@{/login}">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+    <a class="sidebar-link" th:href="@{/addUser}">
+        <i class="fas fa-user-plus"></i> Add User
+    </a>
+</div>
+
+<div class="main-content">
+    <h1>Welcome to Admin Dashboard</h1>
+    <div id="user">
+        <h2>Manage Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Register Time</th>
+                <th>Remove User</th>
+            </tr>
+            </thead>
+            <tbody th:each="user : ${users}">
+            <tr>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role}"></td>
+                <td th:text="${user.timestamp}"></td>
+                <td>
+                    <form method="post" th:action="@{/deleteUser/{id}(id=${user.id})}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<a class="logout-link" th:href="@{/login}">Logout</a>
+</body>
+</html>

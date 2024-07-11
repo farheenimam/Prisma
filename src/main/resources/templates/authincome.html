@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income</title>
+    <style>
+        h1, p, table, th, td {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: black;
+        }
+        .income {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #000, #6a0dad);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: transparent;
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #6a0dad;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: transparent;
+        }
+
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+
+        .navbar-brand {
+            display: block;
+            background-color: #6a0dad;
+            color: white;
+            padding: 10px 0;
+            font-size: 24px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #6a0dad;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4a148c;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .form-container label, .form-container input, .form-container button {
+            margin: 10px 5px;
+            font-size: 1.3rem;
+        }
+
+        .form-container input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .form-container button {
+            margin-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<a class="navbar-brand" href="#">Author Dashboard</a>
+
+<div class="container">
+    <h1>Income</h1>
+    <hr><br>
+    <div class="form-container">
+        <form action="/fetchIncome" th:action="@{/fetchIncome}" method="post">
+            <div class="form-group">
+                <label for="authorName">Enter Author Name:</label>
+                <input type="text" id="authorName" name="authorName" placeholder="Enter author name" required>
+                <button type="submit">Submit</button>
+            </div>
+            <div>
+                <p th:if="${error}" th:text="${error}" class="error-message" style="color:red"></p>
+            </div>
+        </form>
+    </div>
+    <div class="income">
+        <h2>Your total Income is:</h2>
+        <h2 th:if="${name != null}" th:text="'$' + ${name.totalIncome}"></h2>
+    </div>
+</div>
+</body>
+</html>

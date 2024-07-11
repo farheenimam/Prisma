@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Readers</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000, #6a0dad);
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .navbar-brand {
+            display: block;
+            background-color: #6a0dad;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+          .logout-link:hover {
+            background-color: #4a148c;
+        }
+
+        button {
+            background-color: #6a0dad;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #4a148c;
+        }
+
+
+
+
+    .sidebar {
+            position: fixed;
+            left: 0;
+            top: -20px;
+            bottom: 0;
+            width: 200px;
+            background-color: #4a148c;
+            padding-top: 20px;
+        }
+
+        .sidebar-link {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-link:hover {
+            background-color: #6a0dad;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+            border: 1px solid white;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid white;
+        }
+
+        th {
+            background-color: #6a0dad;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: transparent;
+        }
+
+        tr:nth-child(odd) {
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+<a class="navbar-brand" href="#">Admin Dashboard</a>
+<br>
+<br>
+<div class="sidebar">
+    <br><br><br><BR><BR><BR>
+    <a class="sidebar-link" th:href="@{/adminDashboard}">
+        <i class="fas fa-users"></i> Manage User
+    </a>
+    <BR>
+    <a class="sidebar-link" th:href="@{/manageauthors}">
+        <i class="fas fa-users"></i> Manage Authors
+    </a>
+    <BR>
+    <a class="sidebar-link" th:href="@{/home}">
+        <i class="fas fa-sign-out-alt"></i> Home
+    </a>
+</div>
+<div class="container">
+    <header>
+        <h1>Manage Readers</h1>
+    </header>
+    <section class="lists-section">
+        <h2>List of Reader Subscription</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Subscription</th>
+                <th>Amount</th>
+                <th>Transaction Time</th>
+                <th>Remove Reader</th>
+            </tr>
+            </thead>
+            <tbody th:each="reader : ${readers}">
+            <tr>
+                <td th:text="${reader.id}"></td>
+                <td th:text="${reader.email}"></td>
+                <td th:text="${reader.subscription}"></td>
+                <td th:text="${reader.amount}"></td>
+                <td th:text="${reader.timestamp != null ? reader.timestamp : 'N/A'}"></td>
+                <td>
+                    <form method="post" th:action="@{/removeReader/{id}(id=${reader.id})}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>

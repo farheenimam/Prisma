@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000, #6a0dad);
+            background-attachment: fixed;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h2{
+        font-size:2.0rem;
+        }
+        .contact-form {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(106, 13, 173, 0.7);
+            max-width: 400px;
+            width: 100%;
+        }
+        .contact-form h2 {
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        .contact-form .input-group {
+            margin-bottom: 1rem;
+        }
+        .contact-form .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .contact-form .input-group input,
+        .contact-form .input-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+        }
+        .contact-form .input-group textarea {
+            resize: vertical;
+        }
+        .contact-form button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            background: #6a0dad;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .contact-form button:hover {
+            background: #5a0db0;
+        }
+           .navbar {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            font-size: 30px;
+        }
+        .navbar a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="home.html">Home</a>
+    <a href="aboutus.html">About</a>
+</div>
+
+<div class="contact-form">
+    <h2>Contact Us</h2>
+    <br>
+    <form action="#" method="post">
+        <div class="input-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+    </form>
+</div>
+</body>
+</html>
