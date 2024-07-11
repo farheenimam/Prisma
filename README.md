@@ -1,5 +1,5 @@
 # Prisma Project
-<img src="image/prisma.png" alt="Prisma" width="400" height="350" position="">
+<img src="image/prisma.png" alt="Prisma" width="500" height="350" position="centre">
 ## Prisma Website Architecture
 
 Prisma follows a structured architecture based on the Model-View-Controller (MVC) pattern. It includes the following components:
